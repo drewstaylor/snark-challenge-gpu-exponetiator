@@ -1,0 +1,6 @@
+.vs/
+*.user
+*.sln
+*.vcxproj
+x64/
+x86/
