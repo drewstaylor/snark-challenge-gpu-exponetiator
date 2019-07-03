@@ -7,6 +7,11 @@
 #include "dev_array.h"
 #include <math.h>
 
+#include "modnum/modnum_monty_cios.cu"
+#include "modnum/modnum_monty_redc.cu"
+
+using namespace cuFIXNUM;
+
 int main()
 {
 	// Temporary test inputs
@@ -26,8 +31,13 @@ int main()
 	vector_gpu.set(&vector_cpu[0], SIZE);
 	scalar_gpu.set(&scalar_cpu[0], SIZE);
 
+	Kernel<float> cudaKernal;
+
+	cudaKernal.setValue(*vector_gpu.getData());
+
 	// Run worker
-	scalarMatrixMultiplication(vector_gpu.getData(), scalar_gpu.getData(), result_gpu.getData(), N);
+	cudaKernal.scalarMatrixMultiplication(vector_gpu.getData(), scalar_gpu.getData(), result_gpu.getData(), N);
+
 	// Parallelize worker
 	cudaDeviceSynchronize();
 
