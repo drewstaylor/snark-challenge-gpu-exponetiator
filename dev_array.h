@@ -8,7 +8,7 @@
 template <class T>
 class dev_array
 {
-	// public functions
+// public functions
 public:
 	explicit dev_array()
 		: start_(0),
@@ -72,7 +72,7 @@ public:
 	}
 
 
-	// private functions
+// private functions
 private:
 	// allocate memory on the device
 	void allocate(size_t size)
